@@ -9,7 +9,7 @@ export function createAspectStore<State extends object, Actions extends object>(
 ): AspectStore<State, Actions> {
     const AspectContext = React.createContext<Store<State, Action<Actions>>>(defaultStore)
 
-    class Provider extends React.PureComponent<ProviderProps<State, Actions>> {
+    class Provider extends React.Component<ProviderProps<State, Actions>> {
         render() {
             return <AspectContext.Provider value={this.props.store}>
                 {this.props.children}
@@ -17,7 +17,7 @@ export function createAspectStore<State extends object, Actions extends object>(
         }
     }
 
-    class Consumer extends React.PureComponent<ConsumerProps<State, Actions>> {
+    class Consumer extends React.Component<ConsumerProps<State, Actions>> {
         render() {
             return <AspectContext.Consumer>
                 {(store: Store<State, Action<Actions>>) =>
@@ -40,17 +40,6 @@ export function createAspectStore<State extends object, Actions extends object>(
             this.unsubscribe = props.store.subscribe(() => this.updateState())
         }
 
-        shouldComponentUpdate(nextProps: { store: Store<State, Action<Actions>> },
-                              nextState: any): boolean {
-            if (nextState !== this.state) {
-                return true
-            }
-            if (nextProps.store !== this.props.store) {
-                return true
-            }
-            return false
-        }
-
         render() {
             return this.props.children(this.state.storeState, this.props.store.dispatch)
         }
@@ -63,7 +52,7 @@ export function createAspectStore<State extends object, Actions extends object>(
             this.setState({storeState: this.props.store.getState()})
         }
 
-        private unsubscribe: Unsubscribe
+        private readonly unsubscribe: Unsubscribe
     }
 
     return {Provider, Consumer}
