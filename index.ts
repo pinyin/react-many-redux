@@ -1,2 +1,2 @@
-export {AspectStore, Provider, Consumer} from './src/AspectStore'
-export {createAspectStore} from './src/createAspectStore'
+export {Aspect, Provider, Consumer} from './src/Aspect'
+export {createAspect} from './src/createAspect'

@@ -2,7 +2,7 @@ import {Action} from '@pinyin/redux'
 import {ComponentType, ReactNode} from 'react'
 import {Dispatch, Store} from 'redux'
 
-export type AspectStore<State extends object, Actions extends object> = {
+export type Aspect<State extends object, Actions extends object> = {
     Provider: Provider<State, Actions>
     Consumer: Consumer<State, Actions>
 }

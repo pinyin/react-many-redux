@@ -1,12 +1,13 @@
 import {PropsOf} from '@pinyin/react'
 import {Action} from '@pinyin/redux'
 import * as React from 'react'
-import {Dispatch, Store, Unsubscribe} from 'redux'
-import {AspectStore, ConsumerChildren, ConsumerProps, ProviderProps} from './AspectStore'
+import {createStore, Dispatch, Store, Unsubscribe} from 'redux'
+import {Aspect, ConsumerChildren, ConsumerProps, ProviderProps} from './Aspect'
 
-export function createAspectStore<State extends object, Actions extends object>(
-    defaultStore: Store<State, Action<Actions>>
-): AspectStore<State, Actions> {
+export function createAspect<Actions extends object, State extends object = object>(
+    defaultState: State
+): Aspect<State, Actions> {
+    const defaultStore: Store<State, Action<Actions>> = createStore(() => defaultState)
     const AspectContext = React.createContext<Store<State, Action<Actions>>>(defaultStore)
 
     class Provider extends React.Component<ProviderProps<State, Actions>> {
