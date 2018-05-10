@@ -1,7 +1,7 @@
 import {PropsOf} from '@pinyin/react'
 import {Action} from '@pinyin/redux'
 import * as React from 'react'
-import {Store, Unsubscribe} from 'redux'
+import {Dispatch, Store, Unsubscribe} from 'redux'
 import {AspectStore, ConsumerChildren, ConsumerProps, ProviderProps} from './AspectStore'
 
 export function createAspectStore<State extends object, Actions extends object>(
@@ -33,20 +33,26 @@ export function createAspectStore<State extends object, Actions extends object>(
         store: Store<State, Action<Actions>>,
         children: ConsumerChildren<State, Actions>
     }, {
-        storeState: State
+        state: State,
+        dispatch: Dispatch<Action<Actions>>
     }> {
         constructor(props: PropsOf<StoreObserver>) {
             super(props)
             this.unsubscribe = props.store.subscribe(() => this.updateState())
+            this.state = {
+                state: props.store.getState(),
+                dispatch: props.store.dispatch
+            }
         }
 
         render() {
-            return this.props.children(this.state.storeState, this.props.store.dispatch)
+            return this.props.children(this.state.state, this.state.dispatch)
         }
 
         componentDidUpdate(prevProps: { store: Store<State, Action<Actions>> }) {
             if (this.props.store !== prevProps.store) {
                 this.unsubscribe()
+                this.setState({dispatch: this.props.store.dispatch})
                 this.unsubscribe = this.props.store.subscribe(() => this.updateState())
             }
         }
@@ -56,7 +62,7 @@ export function createAspectStore<State extends object, Actions extends object>(
         }
 
         private updateState() {
-            this.setState({storeState: this.props.store.getState()})
+            this.setState({state: this.props.store.getState()})
         }
 
         private unsubscribe: Unsubscribe
