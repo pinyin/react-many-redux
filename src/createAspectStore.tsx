@@ -44,6 +44,13 @@ export function createAspectStore<State extends object, Actions extends object>(
             return this.props.children(this.state.storeState, this.props.store.dispatch)
         }
 
+        componentDidUpdate(prevProps: { store: Store<State, Action<Actions>> }) {
+            if (this.props.store !== prevProps.store) {
+                this.unsubscribe()
+                this.unsubscribe = this.props.store.subscribe(() => this.updateState())
+            }
+        }
+
         componentWillUnmount() {
             this.unsubscribe()
         }
@@ -52,7 +59,7 @@ export function createAspectStore<State extends object, Actions extends object>(
             this.setState({storeState: this.props.store.getState()})
         }
 
-        private readonly unsubscribe: Unsubscribe
+        private unsubscribe: Unsubscribe
     }
 
     return {Provider, Consumer}
