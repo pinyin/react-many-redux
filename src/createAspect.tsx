@@ -43,7 +43,7 @@ export function createAspect<Actions extends object, State extends object = obje
             if (nextProps !== this.props) {
                 return true
             }
-            return this.props.distinct(this.state.state, nextState.state)
+            return nextProps.distinct(this.state.state, nextState.state)
         }
 
         render() {
