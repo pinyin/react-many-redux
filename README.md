@@ -2,10 +2,16 @@
 
 Redux stores with the new Context API.
 
+# Install
+
+`npm install @pinyin/react-many-redux`
+
+TypeScript should be supported out of the box.
+
 # Usage
 
 ```typescript jsx
-import {createAspect} from './index.ts'
+import {createAspect} from '@pinyin/react-many-redux'
 import {createStore} from 'redux'
 
 const {Provider, Consumer} = createAspect({counter: 0})
