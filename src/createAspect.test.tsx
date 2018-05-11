@@ -28,7 +28,7 @@ class Root extends React.Component {
                 <ChildA/>
             </Aspect.Provider>
             <Aspect.Consumer>
-                {(state) =>
+                {({state}) =>
                     <p id={ID.Out}>{state.count}</p>
                 }
             </Aspect.Consumer>
@@ -49,13 +49,13 @@ class ChildB extends React.Component {
     render() {
         return <div>
             <Aspect.Consumer>
-                {(state, dispatch) => <>
+                {({state, dispatch}) => <>
                     <p id={ID.In}>{state.count}</p>
                     <button id={ID.Increase} onClick={() => dispatch({type: 'increase', payload: null})}/>
                 </>}
             </Aspect.Consumer>
             <Aspect.Consumer distinct={(prev, curr) => curr.count === 1}>
-                {(state, dispatch) => <>
+                {({state, dispatch}) => <>
                     <p id={ID.InKeep}>{state.count}</p>
                 </>}
             </Aspect.Consumer>

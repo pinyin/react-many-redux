@@ -1,6 +1,6 @@
 {
   "name": "@pinyin/react-many-redux",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Redux stores with the new Context API.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -31,7 +31,7 @@
   "homepage": "https://github.com/pinyin/react-many-redux#readme",
   "devDependencies": {
     "@types/jest": "^22.2.3",
-    "@types/react": "^16.3.13",
+    "@types/react": "^16.3.14",
     "@types/react-test-renderer": "^16.0.1",
     "jest": "^22.4.3",
     "react": "^16.3.2",
@@ -41,15 +41,15 @@
     "typescript": "^2.9.0-dev.20180510"
   },
   "peerDependencies": {
-    "@types/react": "^16.3.13",
+    "@types/react": "^16.3.14",
     "react": "^16.3.2",
     "redux": "^4.0.0"
   },
   "dependencies": {
     "@pinyin/maybe": "^0.0.6",
     "@pinyin/react": "^0.0.9",
-    "@pinyin/redux": "^0.0.2",
-    "@pinyin/types": "^0.0.10",
+    "@pinyin/redux": "^0.0.4",
+    "@pinyin/types": "^0.0.11",
     "tslib": "^1.9.0"
   }
 }

@@ -47,7 +47,7 @@ export function createAspect<Actions extends object, State extends object = obje
         }
 
         render() {
-            return this.props.children(this.state.state, this.props.store.dispatch)
+            return this.props.children({state: this.state.state, dispatch: this.props.store.dispatch})
         }
 
         componentDidUpdate(prevProps: { store: Store<State, Action<Actions>> }) {

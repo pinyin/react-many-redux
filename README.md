@@ -21,7 +21,7 @@ const store = createStore()  // create a redux store
 {/*...use store in descendants */}
     <Consumer>
     {
-        (state, dispatch)=> {
+        ({state, dispatch})=> {
             // state: store state
             // dispatch: store.dispatch, dispatch action to store
         }
@@ -30,7 +30,7 @@ const store = createStore()  // create a redux store
 </Provider>
 ```
 
-see [test](./src/createAspect.test.tsx) for a running example.
+see [test](./src/createAspect.test.tsx) for a more complete example.
 
 # Notice
 
