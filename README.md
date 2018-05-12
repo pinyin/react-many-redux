@@ -19,7 +19,7 @@ const store = createStore()  // create a redux store
 
 <Provider store={store}>
 {/*...use store in descendants */}
-    <Consumer>
+    <Consumer distinct={(prev, curr)=> /* Optional. Receives two states, returns a boolean which indicates whether children should be updated */}>
     {
         ({state, dispatch})=> {
             // state: store state

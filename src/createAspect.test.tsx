@@ -51,7 +51,7 @@ class ChildB extends React.Component {
             <Aspect.Consumer>
                 {({state, dispatch}) => <>
                     <p id={ID.In}>{state.count}</p>
-                    <button id={ID.Increase} onClick={() => dispatch({type: 'increase', payload: null})}/>
+                    <button id={ID.Increase} onClick={() => dispatch({type: 'increase'})}/>
                 </>}
             </Aspect.Consumer>
             <Aspect.Consumer distinct={(prev, curr) => curr.count === 1}>
