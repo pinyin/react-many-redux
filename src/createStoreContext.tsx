@@ -1,34 +1,34 @@
 import {Action} from '@pinyin/redux'
 import * as React from 'react'
 import {createStore, Store, Unsubscribe} from 'redux'
-import {Aspect} from './Aspect'
 import {ConsumerChildren} from './ConsumerChildren'
 import {ConsumerProps} from './ConsumerProps'
 import {ProviderProps} from './ProviderProps'
+import {StoreContext} from './StoreContext'
 
-export function createAspect<Actions extends object, State extends object = object>(
+export function createStoreContext<Actions extends object, State extends object = object>(
     defaultState: State
-): Aspect<State, Actions> {
+): StoreContext<State, Actions> {
     const defaultStore: Store<State, Action<Actions>> = createStore(() => defaultState)
-    const AspectContext = React.createContext<Store<State, Action<Actions>>>(defaultStore)
+    const InternalContext = React.createContext<Store<State, Action<Actions>>>(defaultStore)
 
     class Provider extends React.Component<ProviderProps<State, Actions>> {
         render() {
-            return <AspectContext.Provider value={this.props.store}>
+            return <InternalContext.Provider value={this.props.store}>
                 {this.props.children}
-            </AspectContext.Provider>
+            </InternalContext.Provider>
         }
     }
 
     class Consumer extends React.Component<ConsumerProps<State, Actions>> {
         render() {
-            return <AspectContext.Consumer>
+            return <InternalContext.Consumer>
                 {(store: Store<State, Action<Actions>>) =>
                     <StoreObserver store={store} distinct={this.props.distinct || (() => true)}>
                         {this.props.children}
                     </StoreObserver>
                 }
-            </AspectContext.Consumer>
+            </InternalContext.Consumer>
         }
     }
 

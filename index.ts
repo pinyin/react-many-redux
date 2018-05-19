@@ -1,4 +1,4 @@
-export {Aspect} from './src/Aspect'
+export {StoreContext} from './src/StoreContext'
 export {Consumer} from './src/Consumer'
-export {createAspect} from './src/createAspect'
+export {createStoreContext} from './src/createStoreContext'
 export {Provider} from './src/Provider'

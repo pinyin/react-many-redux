@@ -2,7 +2,7 @@ import {Action} from '@pinyin/redux'
 import * as React from 'react'
 import {create} from 'react-test-renderer'
 import {createStore} from 'redux'
-import {createAspect} from './createAspect'
+import {createStoreContext} from './createStoreContext'
 
 type Actions = { increase: null }
 type State = { count: number }
@@ -12,7 +12,7 @@ const increase = {type: 'increase'}
 const store = createStore((state: { count: number } | undefined, action: Action<Actions>) =>
     state ? {count: state.count + 1} : {count: 0}
 )
-const Aspect = createAspect<Actions, State>({count: 0})
+const Aspect = createStoreContext<Actions, State>({count: 0})
 
 namespace ID {
     export const Out = "out"
@@ -63,7 +63,7 @@ class ChildB extends React.Component {
     }
 }
 
-describe(`${createAspect.name}`, () => {
+describe(`${createStoreContext.name}`, () => {
     const testRenderer = create(<Root/>)
     const root = testRenderer.root
     test('default counter should be 0', () => {
