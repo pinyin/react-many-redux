@@ -11,10 +11,10 @@ TypeScript should be supported out of the box.
 # Usage
 
 ```typescript jsx
-import {createAspect} from '@pinyin/react-many-redux'
+import {createStoreContext} from '@pinyin/react-many-redux'
 import {createStore} from 'redux'
 
-const {Provider, Consumer} = createAspect({counter: 0})
+const {Provider, Consumer} = createStoreContext({counter: 0})
 const store = createStore()  // create a redux store
 
 <Provider store={store}>
@@ -30,7 +30,7 @@ const store = createStore()  // create a redux store
 </Provider>
 ```
 
-see [test](./src/createAspect.test.tsx) for a more complete example.
+see [test](./src/createStoreContext.test.tsx) for a more complete example.
 
 # Notice
 
