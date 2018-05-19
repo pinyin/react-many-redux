@@ -44,7 +44,6 @@ class ChildA extends React.Component {
     }
 }
 
-// TODO use better way of representing redux action types
 class ChildB extends React.Component {
     render() {
         return <div>
@@ -78,11 +77,11 @@ describe(`${createStoreContext.name}`, () => {
         click()
         click()
         await new Promise(then => setTimeout(then, 200))
-        const inText = root.findByProps({id: ID.In}).children
-        expect(inText).toEqual(["2"])
         const outText = root.findByProps({id: ID.Out}).children
         expect(outText).toEqual(["0"])
         const inKeepText = root.findByProps({id: ID.InKeep}).children
         expect(inKeepText).toEqual(["1"])
+        const inText = root.findByProps({id: ID.In}).children
+        expect(inText).toEqual(["2"])
     })
 })

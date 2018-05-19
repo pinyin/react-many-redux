@@ -1,6 +1,6 @@
 {
   "name": "@pinyin/react-many-redux",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Redux stores with the new Context API.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,7 +9,7 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "prepublishOnly": "rm -rf dist && npx tsc",
+    "prepublishOnly": "rm -rf dist && npx tsc && npx jest",
     "test": "npx jest"
   },
   "repository": {

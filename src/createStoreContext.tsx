@@ -24,7 +24,7 @@ export function createStoreContext<Actions extends object, State extends object 
         render() {
             return <InternalContext.Consumer>
                 {(store: Store<State, Action<Actions>>) =>
-                    <StoreObserver store={store} distinct={this.props.distinct || ((prev, curr) => prev === curr)}>
+                    <StoreObserver store={store} distinct={this.props.distinct || ((prev, curr) => prev !== curr)}>
                         {this.props.children}
                     </StoreObserver>
                 }
