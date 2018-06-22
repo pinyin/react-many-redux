@@ -1,5 +1,7 @@
 # react-many-redux
 
+[![Build Status](https://travis-ci.org/pinyin/react-many-redux.svg?branch=master)](https://travis-ci.org/pinyin/react-many-redux)
+
 Redux stores with the new Context API.
 
 # Install
