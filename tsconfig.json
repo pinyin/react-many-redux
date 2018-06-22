@@ -13,7 +13,8 @@
     "importHelpers": true,
     "noEmitHelpers": true,
     "lib": [
-      "es6"
+      "es6",
+      "dom"
     ]
   },
   "include": [
